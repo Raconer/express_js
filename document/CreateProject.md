@@ -3,7 +3,7 @@
 * Node Express 설치
   * npm install express-generator -g
 * Node Express 프로젝트 생성
-  * express --view=pug backend
+  * express --no-view backend
   * 'backend' : 프로젝트 이름
 * Node Express 폴더 이동
   * cd backend
