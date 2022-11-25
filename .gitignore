@@ -1,0 +1,24 @@
+.DS_Store
+node_modules
+/dist
+
+# Log files
+npm-degug.log*
+yarn-degub.log*
+yarn-degub.log*
+pnpm-degub.log*
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Env File
+.env
+
+# package
+package-lock.json
