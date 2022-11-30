@@ -4,11 +4,11 @@
   "private": true,
   "scripts": {
     "build": "npm-run-all clean transpile",
-    "server": "node ./dist-server/bin/www",
+    "server": "node ./dist/bin/www",
     "dev": "npm-run-all build server",
-    "transpile": "babel ./server --out-dir dist-server",
-    "clean": "rimraf dist-server",
-    "watch:dev": "nodemon",
+    "transpile": "babel ./src --out-dir dist",
+    "clean": "rimraf dist",
+    "watch:dev": "SET NODE_ENV=dev && nodemon --exec babel-node src/bin/www.js",
     "test": "jest"
   },
   "dependencies": {
@@ -17,10 +17,13 @@
     "@babel/preset-env": "^7.20.2",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
+    "dotenv": "^16.0.3",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
     "morgan": "~1.9.1",
+    "mybatis-mapper": "^0.6.8",
+    "mysql": "^2.18.1",
     "nodemon": "^2.0.20",
     "npm-run-all": "^4.1.5",
     "rimraf": "^3.0.2"
@@ -33,7 +36,7 @@
   "nodemonConfig": {
     "exec": "npm run dev",
     "watch": [
-      "server/*",
+      "src/*",
       "public/*",
       "views/*"
     ],
@@ -46,7 +49,7 @@
   "devDependencies": {
     "jest": "^29.3.1"
   },
-  "jest": { 
+  "jest": {
     "testEnvironment": "node"
   }
 }

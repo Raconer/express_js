@@ -27,7 +27,7 @@
   "name": "your-project-name",
   // ....other details
   "scripts": {
-    "server": "node ./server/bin/www"
+    "server": "node ./src/bin/www"
   }
 }
 ```
@@ -67,9 +67,9 @@
   ```json
     // SCript도 수정합니다.
     "scripts": {
-      "server": "node ./server/bin/www",
-      "start": "node ./server/bin/www",
-      "transpile": "babel ./server --out-dir dist-server"
+      "server": "node ./src/bin/www",
+      "start": "node ./src/bin/www",
+      "transpile": "babel ./server --out-dir dist"
     },
     "babel": {
       "presets": ["@babel/preset-env"]
@@ -79,11 +79,11 @@
   1. 명령어 실행
 
   > 이제 여기서 무슨 일이 일어났습니까?
-  > 먼저 cli 명령 babel 을 실행하고 변환할 파일(이 경우에는 server/의 파일)을 지정하고 변환된 내용을 프로젝트 루트의 dist-server라는 다른 폴더에 넣어야 합니다.
+  > 먼저 cli 명령 babel 을 실행하고 변환할 파일(이 경우에는 src/의 파일)을 지정하고 변환된 내용을 프로젝트 루트의 dist라는 다른 폴더에 넣어야 합니다.
   
   1. 결과
   
-  > transpile 명령어를 실행 시키면 dist-server 폴더가 생성되고 그안에 common.js로 변환된 파일들이 생성됩니다.
+  > transpile 명령어를 실행 시키면 dist 폴더가 생성되고 그안에 common.js로 변환된 파일들이 생성됩니다.
   
 1. Clean script
 
@@ -93,10 +93,10 @@
 ```json
 
 "scripts": {
-  "server": "node ./dist-server/bin/www",
-  "transpile": "babel ./server --out-dir dist-server",
-  // 우리가 만든 이 npm 스크립트는 dist-server/ 폴더를 제거한다는 의미입니다.
-  "clean": "rimraf dist-server",
+  "server": "node ./dist/bin/www",
+  "transpile": "babel ./server --out-dir dist",
+  // 우리가 만든 이 npm 스크립트는 dist/ 폴더를 제거한다는 의미입니다.
+  "clean": "rimraf dist",
   // 이제 트랜스파일과 정리를 결합하기 위해 두 프로세스를 결합하는 build 라는 스크립트를 추가합니다.
   "build": "npm-run-all clean transpile",
   // 실행 명령어
@@ -109,7 +109,7 @@
 ```
 
 > 여기서 우리는 서버 스크립트에서 실행 중인 파일을 다시 변경했습니다.
-> 우리는 dist-server/에 있는 트랜스파일된 코드로 파일 경로를 실행하고 있습니다.
+> 우리는 dist/에 있는 트랜스파일된 코드로 파일 경로를 실행하고 있습니다.
 >
 > 위의 명령어를 dev 명령어를 사용하여 프로젝트를 실행 하게 되면
 > package.json의 **"type" : "module"** 이란 코드는 제거 해도 된다.
@@ -126,7 +126,7 @@
 ...
 "nodemonConfig": { 
   "exec": "npm run dev",
-  "watch": ["server/*", "public/*"],
+  "watch": ["src/*", "public/*"],
   "ignore": ["**/__tests__/**", "*.test.js", "*.spec.js"]
 },
 "scripts": { 
