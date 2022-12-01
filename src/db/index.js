@@ -10,13 +10,19 @@ const pool = createPool({
   timezone: 'Asia/Seoul'
 });
 
+const format = { language: "sql", indent: "" };
+
 let connect = (sql) => {
   return new Promise((resolve, reject) => {
     pool.getConnection((err, conn) => {
+      console.log(sql);
+      console.log();
       conn.query(sql, (error, rows, fields) => {
         resolve(rows);
       });
-      if (err) reject(err);
+      if (err) { 
+        reject(err);
+      } 
       pool.releaseConnection(conn);
     });
   })

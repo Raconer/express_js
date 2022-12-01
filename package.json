@@ -8,7 +8,7 @@
     "dev": "npm-run-all build server",
     "transpile": "babel ./src --out-dir dist",
     "clean": "rimraf dist",
-    "watch:dev": "SET NODE_ENV=dev && nodemon --exec babel-node src/bin/www.js",
+    "watch:dev": "SET NODE_ENV=dev && nodemon",
     "test": "jest"
   },
   "dependencies": {
@@ -22,9 +22,10 @@
     "express-validator": "^6.14.2",
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
+    "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
     "morgan": "~1.9.1",
-    "mybatis-mapper": "^0.6.8",
+    "mybatis-mapper": "^0.6.7",
     "mysql": "^2.18.1",
     "nodemon": "^2.0.20",
     "npm-run-all": "^4.1.5",

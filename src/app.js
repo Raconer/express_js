@@ -3,15 +3,12 @@ import path from "path";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
 import "./env/index";
-import { HTTP_STATUS } from "./model/common/code";
 
 import router from "./routes/index.js";
 
 const __dirname = path.resolve();
 
 let app = express();
-// Global
-app.set("HTTP_STATUS", HTTP_STATUS);
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));

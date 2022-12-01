@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="UsersMapper">
+<mapper namespace="MainMapper">
     <!-- CREATE -->
     <insert id="insert">
         INSERT INTO base_table(title)
@@ -10,14 +10,14 @@
     <!-- READ -->
     <sql id="where_list">
         <where>
-            <if test="title != null and title != ''">
-                AND title LIKE CONCAT('%', #{title}, '%')
+            <if test="option.title != null and option.title != ''">
+                AND title LIKE CONCAT('%', #{option.title}, '%')
             </if>
         </where>
     </sql>
 
     <select id="totalCnt">
-        SELECT  COUNT(*)
+        SELECT  COUNT(*) as cnt
         FROM    base_table
         <include refid="where_list"/>
     </select>
@@ -29,14 +29,16 @@
         FROM    base_table
         WHERE   id = #{id}
     </select>
+
     <select id="getList">
         SELECT  id, 
                 title,
                 content
         FROM    base_table 
         <include refid="where_list"/>
-        LIMIT #{startRow}, #{pageSize}
+        LIMIT ${startRow}, ${pageSize}
     </select>
+    
     <!-- Update -->
     <update id="update">
         UPDATE base_table

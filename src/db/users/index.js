@@ -1,21 +1,32 @@
-import MybatisMapper from 'mybatis-mapper';
-import connect from '../index';
 
-MybatisMapper.createMapper([ 'src/db/users/userMapper.xml' ]);
+import connect from "../index";
+import { query } from "../mapper";
+ 
+const mapper = "UsersMapper";
+
+// export let getTotalCnt = (param) => {
+//  let sql = query(mapper, "totalCnt", param);
+//  connect(sql)
+//    .then((data) => {
+//      return data;
+//    })
+//    .catch((err) => {
+//      return err;
+//    });
+// }
+
+// export let getList = (param) => {
+//   return new Promise((resolve, reject) => {
+//     let totalCnt = 100;   
+//   });
+// };
 
 
-const mapper = 'UsersMapper';
-let format = { language: 'sql', indent: '  ' };
-
-export let get = (param) => {
-    return new Promise((resolve, reject) => {
-        let query = MybatisMapper.getStatement(mapper, 'get', param, format);
-        connect(query)
-            .then(data => {
-                resolve(data);
-            })
-            .catch(err => {
-                reject(err);
-            });
-    })
-}
+// let query = MybatisMapper.getStatement(mapper, "totalCnt", param, format);
+//     connect(query)
+//       .then((data) => {
+//         resolve(data);
+//       })
+//       .catch((err) => {
+//         reject(err);
+//       });
